@@ -32,10 +32,10 @@ public class GamingStore {
                     totalSpent += games.get(input);
                     boughtGames.add(input);
                 } else {
-                    System.out.println("Too expensive");
+                    System.out.println("Too Expensive");
                 }
             } else {
-                System.out.println("Not found");
+                System.out.println("Not Found");
             }
             if (currentBalance == 0) {
                 outOfMoney = true;
