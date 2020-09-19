@@ -17,9 +17,9 @@ public class PadawanEquipment {
 
         double totalPrice = lightsaberPrice*(numberOfStudents + Math.ceil(numberOfStudents * 0.1)) + (numberOfStudents*robePrice) + beltPrice*(numberOfStudents - freeBelts);
         if (totalPrice <= totalMoney){
-            System.out.printf("The money is enough - it would cost %.2f lv.", totalPrice);
+            System.out.printf("The money is enough - it would cost %.2flv.", totalPrice);
         } else {
-            System.out.printf("Ivan Cho will need %.2f lv more.", totalPrice - totalMoney);
+            System.out.printf("Ivan Cho will need %.2flv more.", totalPrice - totalMoney);
         }
     }
 }
