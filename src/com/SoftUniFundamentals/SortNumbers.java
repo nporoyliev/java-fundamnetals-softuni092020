@@ -1,8 +1,6 @@
 package com.SoftUniFundamentals;
 
-import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class SortNumbers {
     public static void main(String[] args) {
@@ -10,7 +8,7 @@ public class SortNumbers {
         Scanner scanner = new Scanner (System.in);
 
 
-        Set<Integer> numbers = new TreeSet<>();
+        List<Integer> numbers = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
             numbers.add(scanner.nextInt());
