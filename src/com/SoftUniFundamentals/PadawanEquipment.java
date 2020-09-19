@@ -2,7 +2,7 @@ package com.SoftUniFundamentals;
 
 import java.util.Scanner;
 
-public class Main {
+public class PadawanEquipment {
 
     public static void main(String[] args) {
 
