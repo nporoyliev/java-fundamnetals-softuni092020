@@ -16,10 +16,10 @@ public class Main {
         int freeBelts = (int) (numberOfStudents / 6);
 
         double totalPrice = lightsaberPrice*(numberOfStudents + Math.ceil(numberOfStudents * 0.1)) + (numberOfStudents*robePrice) + beltPrice*(numberOfStudents - freeBelts);
-        if (totalMoney <= totalMoney){
+        if (totalPrice <= totalMoney){
             System.out.printf("The money is enough - it would cost %.2f lv.", totalPrice);
         } else {
-            System.out.printf("Ivan Cho whill need %.2f lv more.", totalPrice - totalMoney);
+            System.out.printf("Ivan Cho will need %.2f lv more.", totalPrice - totalMoney);
         }
     }
 }
