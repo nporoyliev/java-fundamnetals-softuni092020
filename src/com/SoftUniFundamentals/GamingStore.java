@@ -45,8 +45,9 @@ public class GamingStore {
         }
 
             boughtGames.forEach(e -> System.out.println("Bought " + e));
-            System.out.printf("Total spent: $%.2f. Remaining: $%.2f", totalSpent, currentBalance);
-        if (outOfMoney){
+        if(!outOfMoney) {
+            System.out.printf("Total spent: $%.2f. Remaining: $%.2f%n", totalSpent, currentBalance);
+        } else {
             System.out.println("Out of money!");
         }
     }
