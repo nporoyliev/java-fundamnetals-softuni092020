@@ -8,7 +8,8 @@ public class CharsToString {
         Scanner scanner = new Scanner (System.in);
         StringBuilder result = new StringBuilder ();
         for (int i = 0; i < 3; i++) {
-            result.append (scanner.nextByte ());
+            String input = scanner.nextLine ();
+            result.append (input);
         }
         System.out.println (result);
     }
