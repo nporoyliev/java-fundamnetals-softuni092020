@@ -16,7 +16,11 @@ public class RefractorSpecialNumbers {
                 temp = temp / 10;
             }
             boolean isSpecialNumber = (result == 5) || (result == 7) || (result == 11);
-            System.out.printf ("%d -> %b%n", number, isSpecialNumber);
+            if (isSpecialNumber){
+                System.out.printf ("%d -> True%n", number);
+            } else {
+                System.out.printf ("%d -> False%n", number);
+            }
             result = 0;
         }
     }
