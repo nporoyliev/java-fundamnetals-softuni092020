@@ -14,7 +14,7 @@ public class WaterOverflow {
             if (sum + num <= 255) {
                 sum += num;
             } else {
-                System.out.println ("Insufficient capacity !");
+                System.out.println ("Insufficient capacity!");
             }
         }
 
