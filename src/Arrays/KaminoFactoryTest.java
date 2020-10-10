@@ -1,80 +1,56 @@
 package Arrays;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 public class KaminoFactoryTest {
-
-    static int currentId = 1;
-
-    class DNA {
-        private String[] dnaSequence;
-        private int sequenceOfOnes;
-        private int startingIndex;
-        private int endIndex;
-        private int totalSumOfOnes;
-        private int id;
-
-
-        public DNA (int id, String[] sequence){
-            this.dnaSequence = sequence;
-            this.id = id;
-        }
-
-        public int getSequenceOfOnes () {
-            return sequenceOfOnes;
-        }
-
-        public void setSequenceOfOnes (int sequenceOfOnes) {
-            this.sequenceOfOnes = sequenceOfOnes;
-        }
-
-        public int getStartingIndex () {
-            return startingIndex;
-        }
-
-        public void setStartingIndex (int startingIndex) {
-            this.startingIndex = startingIndex;
-        }
-
-        public int getEndIndex () {
-            return endIndex;
-        }
-
-        public void setEndIndex (int endIndex) {
-            this.endIndex = endIndex;
-        }
-
-        public int getTotalSumOfOnes () {
-            return totalSumOfOnes;
-        }
-
-        public void setTotalSumOfOnes (int totalSumOfOnes) {
-            this.totalSumOfOnes = totalSumOfOnes;
-        }
-
-        public int getId () {
-            return id;
-        }
-
-        public void setId (int id) {
-            this.id = id;
-        }
-
-        public void analyzeDNA (String[] dnaSequence){
-            int counter =0;
-            int currentIndex = 0;
-            int sum = 0;
-
-            for (int i = 0; i < dnaSequence.length; i++) {
-                if (dnaSequence[i].equals ("1")){
-                    currentIndex = i;
-                    setStartingIndex (currentIndex);
-                    sum += 1;
-                }
-            }
-        }
-
-    }
 
     public static void main (String[] args) {
 
+
+        Scanner scanner = new Scanner(System.in);
+
+        int sequenceLength = Integer.parseInt(scanner.nextLine());
+
+        List<DNA> dnaList = new ArrayList<>();
+
+        String input = scanner.nextLine();
+        while(!input.equals ("Clone them!")){
+            String[] split = input.split ("!");
+            dnaList.add (new DNA(split));
+            input = scanner.nextLine();
+        }
+
+        analyzeDNAList (dnaList);
+
+        sortDNAListByStartIndex (dnaList);
+
+        sortByTotalSumOfOnes (dnaList);
+
+
+        for (DNA dna : dnaList) {
+            dna.printSequence ();
+        }
+    }
+
+    private static void sortByTotalSumOfOnes (List<DNA> dnaList) {
+        dnaList.stream ()
+                .sorted ((f,s) -> s.getTotalSumOfOnes () - f.getTotalSumOfOnes ());
+    }
+
+    private static void sortDNAListByStartIndex (List<DNA> dnaList) {
+        dnaList.stream ()
+                .sorted ((f,s) -> f.getStartingIndex () - s.getStartingIndex ())
+                .collect(Collectors.toList());
+    }
+
+    private static void analyzeDNAList (List<DNA> dnaList) {
+        dnaList.stream ()
+                .forEach (dna -> {
+                    dna.analyzeDNA (dna.getDnaSequence ());
+                    dna.calculateTotalSumOfOnes ();
+                });
     }
 }
