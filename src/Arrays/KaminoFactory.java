@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class KaminoFactory {
 
-    public static class DNA {
+    static class DNA {
         String[] dnaSequence;
         int sequenceOfOnes;
         int startingIndex;
@@ -14,14 +14,14 @@ public class KaminoFactory {
         int totalSumOfOnes;
         int id;
 
-        DNA(int size, int id){
+        DNA (int size, int id) {
             dnaSequence = new String[size];
             this.id = id;
         }
 
         DNA (int size, String[] sequence, int id) {
-            dnaSequence = new String[size];
-            dnaSequence = sequence;
+            this.dnaSequence = new String[size];
+            this.dnaSequence = sequence;
             this.id = id;
         }
 
@@ -52,17 +52,17 @@ public class KaminoFactory {
             }
         }
 
-        private String printSequence(){
+        private String printSequence () {
             return String.join (" ", dnaSequence);
         }
     }
 
-    public static DNA compareDNA (DNA testDNA, DNA secondDNA){
-        if (testDNA.sequenceOfOnes < secondDNA.sequenceOfOnes){
+    public static DNA compareDNA (DNA testDNA, DNA secondDNA) {
+        if (testDNA.sequenceOfOnes < secondDNA.sequenceOfOnes) {
             return secondDNA;
-        } else  if (testDNA.startingIndex > secondDNA.startingIndex ){
+        } else if (testDNA.startingIndex > secondDNA.startingIndex) {
             return secondDNA;
-        } else  if (testDNA.totalSumOfOnes < secondDNA.totalSumOfOnes){
+        } else if (testDNA.totalSumOfOnes < secondDNA.totalSumOfOnes) {
             return secondDNA;
         } else return testDNA;
     }
@@ -91,7 +91,7 @@ public class KaminoFactory {
         DNA testDNA = new DNA (dnaLength, idCounter + 1);
 
         for (DNA dna : dnaList) {
-       testDNA = compareDNA (testDNA, dna);
+            testDNA = compareDNA (testDNA, dna);
         }
 
         System.out.printf ("Best DNA sample %d with sum: %d.%n%s", testDNA.id, testDNA.totalSumOfOnes, testDNA.printSequence ());
