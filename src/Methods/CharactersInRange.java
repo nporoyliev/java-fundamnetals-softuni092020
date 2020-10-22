@@ -14,7 +14,7 @@ public class CharactersInRange {
     }
 
     private static void printChars (char first, char second) {
-        for (int i = first + 1; i < second; ++i) {
+        for (int i = Math.min(first,second) + 1; i < Math.max(first,second); ++i) {
             System.out.print ((char) i + " ");
         }
     }
