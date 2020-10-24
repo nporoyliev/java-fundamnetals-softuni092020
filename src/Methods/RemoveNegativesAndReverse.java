@@ -15,14 +15,14 @@ public class RemoveNegativesAndReverse {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
-        if (numbers.isEmpty()){
+        if (numbers.isEmpty()) {
             System.out.println("empty");
         } else {
             Collections.reverse(numbers);
             List<Integer> result = numbers.stream()
                     .filter(num -> num >= 0)
                     .collect(Collectors.toList());
-            if (result.isEmpty()){
+            if (result.isEmpty()) {
                 System.out.println("empty");
             } else {
                 for (Integer integer : result) {
