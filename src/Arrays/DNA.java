@@ -1,6 +1,6 @@
 package Arrays;
 
-class DNA {
+public class DNA {
     static int currentId = 1;
 
     private String[] dnaSequence;
@@ -98,6 +98,7 @@ class DNA {
         }
         System.out.println ();
     }
+
 }
 
 
