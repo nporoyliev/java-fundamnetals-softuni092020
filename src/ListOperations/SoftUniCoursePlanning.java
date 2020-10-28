@@ -28,14 +28,17 @@ public class SoftUniCoursePlanning {
                         courses.add ( lessonTitle );
                     }
                     break;
+
                 case "Insert":
                     if ( !courses.contains ( tokens[1] ) ) {
                         courses.add ( Integer.parseInt ( tokens[2] ), tokens[1] );
                     }
                     break;
+
                 case "Remove":
                     courses.remove ( tokens[1] );
                     break;
+
                 case"Swap":
                     if (courses.contains ( tokens[1] ) && courses.contains ( tokens[2])){
 
@@ -45,8 +48,11 @@ public class SoftUniCoursePlanning {
 
                         courses.set ( indexOfFirst, tokens[2] );
                         courses.set ( indexOfSecond, temp );
+
+                        checkForExercise(courses, tokens, indexOfFirst);
                     }
                     break;
+
                 case "Exercise":
                     if ( courses.contains ( tokens[1]) ){
                         int indexOfLesson = courses.indexOf ( tokens[1]);
@@ -61,6 +67,23 @@ public class SoftUniCoursePlanning {
         }
 
         printCourses ( courses );
+    }
+
+    private static void checkForExercise(List<String> courses, String[] tokens, int indexOfFirst) {
+        if (courses.contains(tokens[1] + "-Exercise")){
+            int currentIndex = courses.indexOf(tokens[1] + "-Exercise");
+            String courseExercise = courses.get(currentIndex);
+            courses.remove(currentIndex);
+            courses.add(indexOfFirst + 1, courseExercise);
+            courses.remove(currentIndex);
+        }
+        if (courses.contains(tokens[2] + "-Exercise")){
+            int currentIndex = courses.indexOf(tokens[2] + "-Exercise");
+            String courseExercise = courses.get(currentIndex);
+            courses.remove(currentIndex);
+            courses.add(indexOfFirst + 1, courseExercise);
+
+        }
     }
 
     private static void printCourses ( List<String> courses ) {
