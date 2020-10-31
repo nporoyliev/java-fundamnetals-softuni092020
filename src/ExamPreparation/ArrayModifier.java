@@ -3,6 +3,8 @@ package ExamPreparation;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ArrayModifier {
@@ -42,11 +44,13 @@ public class ArrayModifier {
                     input = scanner.nextLine ();
         }
 
+        Function<Integer, String> toStringFunction = digit -> digit + "";
 
-        System.out.println (numbers.stream ()
-                .map (num -> num + "")
+      Consumer<List<Integer>> consumer = num ->  System.out.println (num.stream ()
+                .map (toStringFunction)
                 .collect (Collectors.joining (", ")));
 
+        consumer.accept (numbers);
     }
 
 }

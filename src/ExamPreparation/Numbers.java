@@ -25,8 +25,10 @@ public class Numbers {
         if (result.isEmpty ()){
             System.out.println ("No");
         } else {
+
             int size = result.size();
             int counter = 5;
+
             while(size-- > 0 && counter-- > 0){
                 System.out.print (result.get (size) + " ");
             }
