@@ -14,7 +14,7 @@ public class Numbers {
                 .map (Integer::parseInt)
                 .collect (Collectors.toList ());
 
-        double average = (double)(numbers.stream ()
+        double average = (numbers.stream ()
                 .reduce (0, Integer::sum) / numbers.size ());
 
         List<Integer> result = numbers.stream ()
