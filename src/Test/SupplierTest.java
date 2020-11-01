@@ -8,9 +8,9 @@ import java.util.function.Supplier;
 public class SupplierTest {
 
     public static Supplier<List<Person>> generateRandomPerson = () -> {
-        List<Person> people = new ArrayList<> ();
+        List<Person> people = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
-            people.add (new Person (Character.toString (i), new Random ().nextInt (100)));
+            people.add(new Person(Character.toString(i), new Random().nextInt(100)));
         }
         return people;
     };
@@ -19,14 +19,16 @@ public class SupplierTest {
         String id;
         int age;
 
-        public Person (String id, int age) {
+        public Person(String id, int age) {
             this.id = id;
             this.age = age;
         }
     }
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 
+        List<Person> people = generateRandomPerson.get();
+        System.out.println();
 
     }
 }
