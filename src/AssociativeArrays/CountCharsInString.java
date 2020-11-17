@@ -8,33 +8,36 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class CountCharsInString {
-    public static void main(String[] args) {
+    public static void main (String[] args) {
 
         Scanner scanner = new Scanner (System.in);
 
-        char[] chars = scanner.nextLine().toCharArray();
+        char[] chars = scanner.nextLine ().toCharArray ();
 
-        Map<Character,Integer> characterMap = new HashMap<>();
+        Map<Character, Integer> characterMap = new HashMap<> ();
 
         int space = ' ';
 
-        for (char c : chars) {
+        for (int i = 0; i < chars.length; i++) {
+
+
+            char c = chars[i];
             if (c != space) {
-                if (!characterMap.containsKey(c)) {
-                    characterMap.put(c, 1);
+                if (!characterMap.containsKey (c)) {
+                    characterMap.put (c, 1);
                 } else {
-                    characterMap.put(c, characterMap.get(c) + 1);
+                    characterMap.put (c, characterMap.get (c) + 1);
                 }
             }
         }
 
-        printMap(characterMap);
+        printMap (characterMap);
 
     }
 
-    private static void printMap(Map<Character, Integer> characterMap) {
-        for (Map.Entry<Character, Integer> entry : characterMap.entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
+    private static void printMap (Map<Character, Integer> characterMap) {
+        for (Map.Entry<Character, Integer> entry : characterMap.entrySet ()) {
+            System.out.println (entry.getKey () + " -> " + entry.getValue ());
         }
     }
 }
