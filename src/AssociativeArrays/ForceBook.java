@@ -7,40 +7,94 @@ public class ForceBook {
 
         Scanner scanner = new Scanner (System.in);
 
-        String input = "";
+        TreeMap<String, List<String>> webSide = new TreeMap<> ();
 
-        Map<String, List<String>> forceMap = new HashMap<> ();
+        String line = scanner.nextLine ();
 
-        while (!"Lumapawaroo".equals (input = scanner.nextLine ())) {
-            String[] tokens = input.split ("\\s+");
+        while (!line.equals ("Lumpawaroo")) {
+            String[] command;
+            String operand = "";
 
-            String side = "";
-            String command = tokens[1];
-            String user = "";
-
-            switch (command) {
-                case "|":
-                    side = tokens[0];
-                    user = tokens[2];
-                    if (!forceMap.containsKey (side)) {
-                        forceMap.put (side, new ArrayList<> ());
-                        forceMap.get (side).add (user);
-                    } else if (forceMap.containsKey (side)) {
-                        if (!forceMap.containsKey (user)) {
-                            forceMap.get (side).add (user);
-                        }
-                    }
-                    break;
-                case "->":
-                    side = tokens[2];
-                    user = tokens[0];
-                    if (forceMap.containsKey (user)){
-
-                    }
-                        break;
+            if (line.contains ("|")) {
+                command = line.split ("\\s+\\|\\s+");
+                operand = "|";
+            } else {
+                command = line.split ("\\s+->\\s+");
+                operand = "->";
             }
 
+            switch (operand) {
+                case "|":
+                    String side = command[0];
+                    String name = command[1];
 
+                    boolean check = false;
+
+                    for (Map.Entry<String, List<String>> current : webSide.entrySet ()) {
+                        if (current.getValue ().contains (name)) {
+                            check = true;
+                            break;
+                        }
+                    }
+
+                    if (!check) {
+                        if (!webSide.containsKey (side)) {
+                            webSide.put (side, new ArrayList<> ());
+                            webSide.get (side).add (name);
+                        } else if (webSide.containsKey (side) && !webSide.get (side).contains (name)) {
+                            webSide.get (side).add (name);
+                        }
+                    }
+
+                    break;
+
+                case "->":
+                    String user = command[0];
+                    String whichSide = command[1];
+
+                    for (Map.Entry<String, List<String>> current : webSide.entrySet ()) {
+                        if (current.getValue ().contains (user)) {
+                            webSide.get (current.getKey ()).remove (user);
+                            break;
+                        }
+                    }
+
+                    if (!webSide.containsKey (whichSide)) {
+                        webSide.put (whichSide, new ArrayList<> ());
+                        webSide.get (whichSide).add (user);
+                        System.out.printf ("%s joins the %s side!%n", user, whichSide);
+                    } else if (webSide.containsKey (whichSide) && !webSide.get (whichSide).contains (user)) {
+                        webSide.get (whichSide).add (user);
+                        System.out.printf ("%s joins the %s side!%n", user, whichSide);
+                    }
+
+                    break;
+
+                default:
+                    break;
+            }
+
+            line = scanner.nextLine ();
         }
+
+        webSide
+                .entrySet ()
+                .stream ()
+                .filter (users -> users.getValue ().size () > 0)
+                .sorted (Map.Entry.<String, List<String>>comparingByValue (Comparator.comparing (List::size)).reversed ())
+                .forEach (s -> {
+                    System.out.printf ("Side: %s, Members: %d%n", s.getKey (), s.getValue ().size ());
+
+                    s.getValue ()
+                            .stream ()
+                            .sorted (String::compareTo)
+                            .forEach (person -> System.out.printf ("! %s%n", person));
+                });
+
+        webSide
+                .entrySet ()
+                .stream ()
+                .filter (user -> user.getValue ().size () > 0)
+                .sorted (Map.Entry.<String, List<String>>comparingByValue (Comparator.comparing (List::size)).reversed ());
     }
 }
