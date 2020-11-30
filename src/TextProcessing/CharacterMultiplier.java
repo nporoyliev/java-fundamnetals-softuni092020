@@ -3,31 +3,29 @@ package TextProcessing;
 import java.util.Scanner;
 
 public class CharacterMultiplier {
-
     public static void main (String[] args) {
-        Scanner scan = new Scanner (System.in);
-        String[] line = scan.nextLine ().split (" ");
-        int res = sumOfChars (line[0], line[1]);
-        System.out.println (res);
+
+        Scanner scanner = new Scanner (System.in);
+
+        String[] names = scanner.nextLine ().split ("\\s+");
+
+        calculateSumOfChars (names[0], names[1]);
+        System.out.println ();
     }
 
-    private static int sumOfChars (String s, String s1) {
-        int res = 0;
-        int minLength = Math.min (s.length (), s1.length ());
-        for (int i = 0; i < minLength; i++) {
-            res += s.charAt (i) * s1.charAt (i);
+    private static void calculateSumOfChars (String name, String name1) {
+        int totalSum = 0;
+
+
+        int min = Math.min (name.length (), name1.length ());
+        for (int i = 0; i < min; i++) {
+            totalSum = name.charAt (i) * name1.charAt (i);
         }
-        if (s.length () > s1.length ()) {
-            for (int i = minLength; i < s.length (); i++) {
-                res += s.charAt (i);
+        if (name.length () > name1.length ()){
+            for (int i = min; i < name.length (); i++) {
+               totalSum +=  name.charAt (i);
             }
-        } else {
-            for (int i = minLength; i < s1.length (); i++) {
-                res += s1.charAt (i);
-            }
+            System.out.println ();
         }
-        return res;
     }
 }
-
-

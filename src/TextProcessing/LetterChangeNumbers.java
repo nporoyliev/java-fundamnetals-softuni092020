@@ -19,7 +19,9 @@ public class LetterChangeNumbers {
                 .collect (Collectors.toList ());
 
 
-        System.out.println ('s' - 'a' + 1);
+
+
+       // System.out.println ('s' - 'a' + 1);
     }
 
     public static double calculateStringSum (String sequence) {
