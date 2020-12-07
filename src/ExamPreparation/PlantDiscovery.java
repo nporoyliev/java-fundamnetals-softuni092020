@@ -55,13 +55,17 @@ public class PlantDiscovery {
         String input;
 
         while (!"Exhibition".equals(input = scanner.nextLine())) {
+
             String[] tokens = input.split(": ");
             String command = tokens[0];
             String[] split = tokens[1].split(" - ");
             String name = split[0];
-            if (!commands.contains(command)) {
-                System.out.println("error");
-            } else {
+
+            if (!plants.containsKey (name)){
+                System.out.println ("error");
+                continue;
+            }
+
                 switch (command) {
                     case "Rate":
                         double rating = Double.parseDouble(split[1]);
@@ -74,15 +78,16 @@ public class PlantDiscovery {
                     case "Reset":
                         plants.get(name).ratings.clear();
                         break;
+                    default:
+                        System.out.println ("error");
                 }
             }
-        }
+
         plants.forEach((key, value) -> {
-            double sum = value.ratings.stream().mapToDouble(Double::doubleValue).sum();
-            double averageRating = sum / value.ratings.size();
-            if (value.ratings.isEmpty()) {
-                averageRating = 0.0;
-            }
+            double averageRating = value.ratings.stream()
+                    .mapToDouble(Double::doubleValue)
+                    .average ()
+                    .orElse (0.0);
             value.setAverageRating(averageRating);
         });
 
@@ -96,12 +101,10 @@ public class PlantDiscovery {
                     }
                     return result;
                 })
-                .forEach(plant -> {
-                    System.out.printf("- %s; Rarity: %d; Rating: %.2f%n",
-                            plant.getValue().name,
-                            plant.getValue().rarity,
-                            plant.getValue().averageRating);
-                });
+                .forEach(plant -> System.out.printf("- %s; Rarity: %d; Rating: %.2f%n",
+                        plant.getValue().name,
+                        plant.getValue().rarity,
+                        plant.getValue().averageRating));
         System.out.println();
     }
 }
