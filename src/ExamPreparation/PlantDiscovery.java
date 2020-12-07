@@ -1,4 +1,4 @@
-package AssociativeArrays;
+package ExamPreparation;
 
 import java.util.*;
 
